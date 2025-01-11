@@ -291,47 +291,22 @@
 // console.log(result)
 
 
-interface Person {
-    name: string;
-    age: number;
-    greet():void;
+class BankAccount {
+    private balance: number;
+
+    constructor(initialBalance: number) {
+        this.balance = initialBalance;
+    }
+
+    public deposit(amount: number):void {
+        this.balance += amount;
+    }
+
+    public getBalance():number {
+        return this.balance;
+    }
 }
 
-class Student implements Person {
-    name: string;
-    age: number;
-    university: string;
-
-constructor(name: string, age: number, university: string) {
-    this.name = name;
-    this.age = age;
-    this.university = university;
-}
-
-greet(): void {
-    console.log(`Привет, меня зовут ${this.name}, мне ${this.age} лет. Я учусь в ${this.university}.`)
-}
-}
-
-class Teacher implements Person {
-    name: string;
-    age: number;
-    study: string;
-
-constructor(name: string, age: number, study: string ) {
-    this.name = name;
-    this.age = age;
-    this.study = study
-}
-
-greet(): void {
-    console.log(`Привет, меня зовут ${this.name}, мне ${this.age} лет. Я учусь в ${this.study}.`)
-}
-
-}
-
-const Luke =  new Student('yelaman', 21, 'UKGU');
-Luke.greet()
-
-const Ioda = new Teacher('Bibarys', 24, 'Amanbay Tech');
-Ioda.greet()
+const account = new BankAccount(1000);
+account.deposit(500);
+console.log(account.getBalance())
