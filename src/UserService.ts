@@ -292,35 +292,46 @@
 
 
 
-class BankAccount {
-    protected balance: number;
+abstract class Vehicle {
+    start():void{}
+    stop():void{}
+}
 
-    constructor(initialBalance: number ) {
-        this.balance = initialBalance;
+class Car extends Vehicle {
+    start(): void {
+        console.log('Машина едет');
     }
-
-    public deposit(amount: number):void {
-        this.balance +=amount
-    }
-
-    public getBalance():number {
-        return this.balance;
+    stop(): void {
+        console.log('Машина остановилась')
     }
 }
 
-class PremiumBankAccount extends BankAccount {
-    constructor(initialBalance: number ) {
-        super(initialBalance);
+class Bicycle extends Vehicle {
+    start():void {
+        console.log('Велосипед едет')
     }
-
-    public withdraw(amount: number):void {
-        if(this.balance >= amount) {
-            this.balance -= amount;
-        }
+    stop(): void {
+        console.log('Велосипед остановаился')
     }
 }
 
-const premiumAccount = new PremiumBankAccount(1000);
-premiumAccount.deposit(500);
-premiumAccount.withdraw(200)
-console.log(premiumAccount.getBalance()); // 1300
+class Boat extends Vehicle {
+    start(): void {
+        console.log('Лодка плывет');
+    }
+    stop():void {
+        console.log('Лодка остановилась')
+    }
+}
+
+const Auto = new Car()
+Auto.start()
+Auto.stop()
+
+const Linkor = new Boat();;
+Linkor.start()
+Linkor.stop()
+
+const BMX = new Bicycle()
+BMX.start();
+BMX.stop()
