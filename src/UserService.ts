@@ -291,15 +291,16 @@
 // console.log(result)
 
 
-class BankAccount {
-    private balance: number;
 
-    constructor(initialBalance: number) {
+class BankAccount {
+    protected balance: number;
+
+    constructor(initialBalance: number ) {
         this.balance = initialBalance;
     }
 
     public deposit(amount: number):void {
-        this.balance += amount;
+        this.balance +=amount
     }
 
     public getBalance():number {
@@ -307,6 +308,19 @@ class BankAccount {
     }
 }
 
-const account = new BankAccount(1000);
-account.deposit(500);
-console.log(account.getBalance())
+class PremiumBankAccount extends BankAccount {
+    constructor(initialBalance: number ) {
+        super(initialBalance);
+    }
+
+    public withdraw(amount: number):void {
+        if(this.balance >= amount) {
+            this.balance -= amount;
+        }
+    }
+}
+
+const premiumAccount = new PremiumBankAccount(1000);
+premiumAccount.deposit(500);
+premiumAccount.withdraw(200)
+console.log(premiumAccount.getBalance()); // 1300
