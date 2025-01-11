@@ -233,47 +233,105 @@
 
 
 
-abstract class PaymentMethod {
-    abstract processPayment(amount: number):void;
-}
+// abstract class PaymentMethod {
+//     abstract processPayment(amount: number):void;
+// }
 
-class CardPayment extends PaymentMethod {
-    processPayment(amount: number): void {
-        console.log(`Оплата ${amount} с использованием кредитной карты выполнена.`)
-    }
-}
+// class CardPayment extends PaymentMethod {
+//     processPayment(amount: number): void {
+//         console.log(`Оплата ${amount} с использованием кредитной карты выполнена.`)
+//     }
+// }
 
-class BitcoinPayment extends PaymentMethod {
-    processPayment(amount: number): void  {
-        console.log(`Оплата ${amount} с использованием биткойна выполнена.`)
-    }
-}
-class CashPayment extends PaymentMethod {
-    processPayment(amount: number) {
-        console.log(`Оплата ${amount} с использованием наличных выполнена.`)
-    }
-}
+// class BitcoinPayment extends PaymentMethod {
+//     processPayment(amount: number): void  {
+//         console.log(`Оплата ${amount} с использованием биткойна выполнена.`)
+//     }
+// }
+// class CashPayment extends PaymentMethod {
+//     processPayment(amount: number) {
+//         console.log(`Оплата ${amount} с использованием наличных выполнена.`)
+//     }
+// }
 
-class processPayment {
-    private paymentMethod: PaymentMethod;
+// class processPayment {
+//     private paymentMethod: PaymentMethod;
     
-    constructor(paymentMethod: PaymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-    executePayment(amount: number):void {
-        this.paymentMethod.processPayment(amount);
-    }
+//     constructor(paymentMethod: PaymentMethod) {
+//         this.paymentMethod = paymentMethod;
+//     }
+//     executePayment(amount: number):void {
+//         this.paymentMethod.processPayment(amount);
+//     }
+// }
+// const creditCard = new CardPayment();
+// const cash = new CashPayment();
+// const bitcoin = new BitcoinPayment()
+
+// // Оплачиваем через разные методы
+// const processor1 = new processPayment(creditCard);
+// processor1.executePayment(100);
+
+// const processor2 = new processPayment(cash);
+// processor2.executePayment(200);
+
+// const processor3 = new processPayment(bitcoin);
+// processor3.executePayment(300);
+
+// interface BookInfo {
+//     title: string;
+//     author: string;
+//     year: number;
+// }
+// function BookInfo(book:BookInfo):string {
+//     return `Книга ${book.title} была написана ${book.author} и издана в ${book.year}.`;
+
+// }
+// const result = BookInfo({title: 'yelaman', author: 'zhanibekov', year: 21});
+// console.log(result)
+
+
+interface Person {
+    name: string;
+    age: number;
+    greet():void;
 }
-const creditCard = new CardPayment();
-const cash = new CashPayment();
-const bitcoin = new BitcoinPayment()
 
-// Оплачиваем через разные методы
-const processor1 = new processPayment(creditCard);
-processor1.executePayment(100);
+class Student implements Person {
+    name: string;
+    age: number;
+    university: string;
 
-const processor2 = new processPayment(cash);
-processor2.executePayment(200);
+constructor(name: string, age: number, university: string) {
+    this.name = name;
+    this.age = age;
+    this.university = university;
+}
 
-const processor3 = new processPayment(bitcoin);
-processor3.executePayment(300);
+greet(): void {
+    console.log(`Привет, меня зовут ${this.name}, мне ${this.age} лет. Я учусь в ${this.university}.`)
+}
+}
+
+class Teacher implements Person {
+    name: string;
+    age: number;
+    study: string;
+
+constructor(name: string, age: number, study: string ) {
+    this.name = name;
+    this.age = age;
+    this.study = study
+}
+
+greet(): void {
+    console.log(`Привет, меня зовут ${this.name}, мне ${this.age} лет. Я учусь в ${this.study}.`)
+}
+
+}
+
+const Luke =  new Student('yelaman', 21, 'UKGU');
+Luke.greet()
+
+const Ioda = new Teacher('Bibarys', 24, 'Amanbay Tech');
+Ioda.greet()
