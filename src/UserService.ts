@@ -292,46 +292,55 @@
 
 
 
-abstract class Vehicle {
-   abstract start():void
-   abstract stop():void
+// abstract class Vehicle {
+//    abstract start():void
+//    abstract stop():void
+// }
+
+// class Car extends Vehicle {
+//     start(): void {
+//         console.log('Машина едет');
+//     }
+//     stop(): void {
+//         console.log('Машина остановилась')
+//     }
+// }
+
+// class Bicycle extends Vehicle {
+//     start():void {
+//         console.log('Велосипед едет')
+//     }
+//     stop(): void {
+//         console.log('Велосипед остановаился')
+//     }
+// }
+
+// class Boat extends Vehicle {
+//     start(): void {
+//         console.log('Лодка плывет');
+//     }
+//     stop():void {
+//         console.log('Лодка остановилась')
+//     }
+// }
+
+// const Auto = new Car()
+// Auto.start()
+// Auto.stop()
+
+// const Linkor = new Boat();;
+// Linkor.start()
+// Linkor.stop()
+
+// const BMX = new Bicycle()
+// BMX.start();
+// BMX.stop()
+
+
+function box <T>(item: T): T {
+    return item;
 }
-
-class Car extends Vehicle {
-    start(): void {
-        console.log('Машина едет');
-    }
-    stop(): void {
-        console.log('Машина остановилась')
-    }
-}
-
-class Bicycle extends Vehicle {
-    start():void {
-        console.log('Велосипед едет')
-    }
-    stop(): void {
-        console.log('Велосипед остановаился')
-    }
-}
-
-class Boat extends Vehicle {
-    start(): void {
-        console.log('Лодка плывет');
-    }
-    stop():void {
-        console.log('Лодка остановилась')
-    }
-}
-
-const Auto = new Car()
-Auto.start()
-Auto.stop()
-
-const Linkor = new Boat();;
-Linkor.start()
-Linkor.stop()
-
-const BMX = new Bicycle()
-BMX.start();
-BMX.stop()
+let numberBox = box(123);
+let stringBox = box('hello')
+console.log(numberBox);  // 123
+console.log(stringBox);  // hello
