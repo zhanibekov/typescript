@@ -293,8 +293,8 @@
 
 
 abstract class Vehicle {
-    start():void{}
-    stop():void{}
+   abstract start():void
+   abstract stop():void
 }
 
 class Car extends Vehicle {
