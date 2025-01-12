@@ -347,28 +347,83 @@
 
 
 
-abstract class Shape {
-    abstract getArea():number;
-}
+// abstract class Shape {
+//     abstract getArea():number;
+// }
 
-class Circle extends Shape {
-    constructor(private radius: number) {
-        super();
-    }
-    getArea(): number {
-        return Math.PI * this.radius ** 2;
-    }
-}
+// class Circle extends Shape {
+//     constructor(private radius: number) {
+//         super();
+//     }
+//     getArea(): number {
+//         return Math.PI * this.radius ** 2;
+//     }
+// }
 
-class Rectangle extends Shape {
-    constructor(private width: number, private height: number) {
-        super()
-    }
+// class Rectangle extends Shape {
+//     constructor(private width: number, private height: number) {
+//         super()
+//     }
 
-    getArea(): number {
-        return this.width * this.height;
-    }
-}
-const shapes: Shape[] = [new Circle(5), new Rectangle(10, 20)];
-shapes.forEach(shape => console.log(shape.getArea()));
+//     getArea(): number {
+//         return this.width * this.height;
+//     }
+// }
+// const shapes: Shape[] = [new Circle(5), new Rectangle(10, 20)];
+// shapes.forEach(shape => console.log(shape.getArea()));
 
+
+
+
+// Абстракция для уведомлений
+interface Notification {
+    send(message: string): void;
+  }
+  
+  // Реализация для email
+  class EmailNotification implements Notification {
+    send(message: string): void {
+      console.log(`Sending email: ${message}`);
+    }
+  }
+  
+  // Реализация для SMS
+  class SMSNotification implements Notification {
+    send(message: string): void {
+      console.log(`Sending SMS: ${message}`);
+    }
+  }
+  
+  // Реализация для push-уведомлений
+  class PushNotification implements Notification {
+    send(message: string): void {
+      console.log(`Sending push notification: ${message}`);
+    }
+  }
+  
+  // Класс для обработки уведомлений
+  class NotificationService {
+    private notification: Notification;
+  
+    constructor(notification: Notification) {
+      this.notification = notification;
+    }
+  
+    sendNotification(message: string): void {
+      this.notification.send(message);
+    }
+  }
+  
+  // Использование
+  const emailNotification = new EmailNotification();
+  const smsNotification = new SMSNotification();
+  const pushNotification = new PushNotification();
+  
+  const emailService = new NotificationService(emailNotification);
+  const smsService = new NotificationService(smsNotification);
+  const pushService = new NotificationService(pushNotification);
+  
+  emailService.sendNotification('Hello, User!');
+  smsService.sendNotification('You have a new message!');
+  pushService.sendNotification('New push notification!');
+  
