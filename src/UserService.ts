@@ -347,20 +347,28 @@
 
 
 
-class ReportGenerator {
-    generate(reportData:any):string {
-        return JSON.stringify(reportData);
+abstract class Shape {
+    abstract getArea():number;
+}
+
+class Circle extends Shape {
+    constructor(private radius: number) {
+        super();
+    }
+    getArea(): number {
+        return Math.PI * this.radius ** 2;
     }
 }
 
-class ReportSaver {
-    save(report: string): void {
-        console.log(`Saving report: ${report}`)
+class Rectangle extends Shape {
+    constructor(private width: number, private height: number) {
+        super()
+    }
+
+    getArea(): number {
+        return this.width * this.height;
     }
 }
+const shapes: Shape[] = [new Circle(5), new Rectangle(10, 20)];
+shapes.forEach(shape => console.log(shape.getArea()));
 
-const reportGenerator = new ReportGenerator();
-const reportSaver = new ReportSaver()
-
-const report = reportGenerator.generate({title: 'Report'});
-reportSaver.save(report)
