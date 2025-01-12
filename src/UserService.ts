@@ -376,6 +376,7 @@
 
 
 // Абстракция для уведомлений
+// Абстракция для уведомлений
 interface Notification {
     send(message: string): void;
   }
@@ -403,27 +404,33 @@ interface Notification {
   
   // Класс для обработки уведомлений
   class NotificationService {
-    private notification: Notification;
+    private notifications: Notification[] = [];
   
-    constructor(notification: Notification) {
-      this.notification = notification;
+    // Метод для добавления уведомлений
+    addNotification(notification: Notification): void {
+      this.notifications.push(notification);
     }
   
-    sendNotification(message: string): void {
-      this.notification.send(message);
+    // Метод для отправки всех уведомлений
+    sendNotifications(message: string): void {
+      this.notifications.forEach(notification => {
+        notification.send(message);
+      });
     }
   }
   
   // Использование
-  const emailNotification = new EmailNotification();
-  const smsNotification = new SMSNotification();
-  const pushNotification = new PushNotification();
+  const emailService = new EmailNotification();
+  const smsService = new SMSNotification();
+  const pushService = new PushNotification();
   
-  const emailService = new NotificationService(emailNotification);
-  const smsService = new NotificationService(smsNotification);
-  const pushService = new NotificationService(pushNotification);
+  const notificationService = new NotificationService();
   
-  emailService.sendNotification('Hello, User!');
-  smsService.sendNotification('You have a new message!');
-  pushService.sendNotification('New push notification!');
+  // Добавляем различные типы уведомлений
+  notificationService.addNotification(emailService);
+  notificationService.addNotification(smsService);
+  notificationService.addNotification(pushService);
+  
+  // Отправляем уведомления
+  notificationService.sendNotifications('Hello, User!');
   
