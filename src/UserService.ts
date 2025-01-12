@@ -337,10 +337,30 @@
 // BMX.stop()
 
 
-function box <T>(item: T): T {
-    return item;
+// function box <T>(item: T): T {
+//     return item;
+// }
+// let numberBox = box(123);
+// let stringBox = box('hello')
+// console.log(numberBox);  // 123
+// console.log(stringBox);  // hello
+
+
+
+class ReportGenerator {
+    generate(reportData:any):string {
+        return JSON.stringify(reportData);
+    }
 }
-let numberBox = box(123);
-let stringBox = box('hello')
-console.log(numberBox);  // 123
-console.log(stringBox);  // hello
+
+class ReportSaver {
+    save(report: string): void {
+        console.log(`Saving report: ${report}`)
+    }
+}
+
+const reportGenerator = new ReportGenerator();
+const reportSaver = new ReportSaver()
+
+const report = reportGenerator.generate({title: 'Report'});
+reportSaver.save(report)
