@@ -400,7 +400,7 @@ interface Weapon {
   
   // Класс персонажа зависит от абстракции, а не от конкретного оружия
   class Player {
-    private weapon: Weapon;
+    private weapon: Weapon
   
     constructor(weapon: Weapon) {
       this.weapon = weapon; // Зависимость через абстракцию
