@@ -379,23 +379,45 @@
 // Абстракция для уведомлений
 
 
-class Sword {
-    attack():void {
-        console.log('Атакуем мечом')
+// Абстракция для оружия
+interface Weapon {
+    attack(): void;
+  }
+  
+  // Конкретное оружие - меч
+  class Sword implements Weapon {
+    attack(): void {
+      console.log("Атакую мечом!");
     }
-}
-
-class Player {
-    private sword: Sword;
-
-    constructor() {
-        this.sword = new Sword();
+  }
+  
+  // Конкретное оружие - лук
+  class Bow implements Weapon {
+    attack(): void {
+      console.log("Стреляю из лука!");
     }
-
-    fight():void {
-        this.sword.attack()
+  }
+  
+  // Класс персонажа зависит от абстракции, а не от конкретного оружия
+  class Player {
+    private weapon: Weapon;
+  
+    constructor(weapon: Weapon) {
+      this.weapon = weapon; // Зависимость через абстракцию
     }
-}
-
-const player = new Player()
-player.fight()
+  
+    fight(): void {
+      this.weapon.attack(); // Использует любое оружие
+    }
+  }
+  
+  // Использование
+  const sword = new Sword();
+  const bow = new Bow();
+  
+  const playerWithSword = new Player(sword);
+  playerWithSword.fight(); // "Атакую мечом!"
+  
+  const playerWithBow = new Player(bow);
+  playerWithBow.fight(); // "Стреляю из лука!"
+  
