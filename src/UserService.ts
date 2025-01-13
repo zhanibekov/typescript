@@ -377,60 +377,25 @@
 
 // Абстракция для уведомлений
 // Абстракция для уведомлений
-interface Notification {
-    send(message: string): void;
-  }
-  
-  // Реализация для email
-  class EmailNotification implements Notification {
-    send(message: string): void {
-      console.log(`Sending email: ${message}`);
+
+
+class Sword {
+    attack():void {
+        console.log('Атакуем мечом')
     }
-  }
-  
-  // Реализация для SMS
-  class SMSNotification implements Notification {
-    send(message: string): void {
-      console.log(`Sending SMS: ${message}`);
+}
+
+class Player {
+    private sword: Sword;
+
+    constructor() {
+        this.sword = new Sword();
     }
-  }
-  
-  // Реализация для push-уведомлений
-  class PushNotification implements Notification {
-    send(message: string): void {
-      console.log(`Sending push notification: ${message}`);
+
+    fight():void {
+        this.sword.attack()
     }
-  }
-  
-  // Класс для обработки уведомлений
-  class NotificationService {
-    private notifications: Notification[] = [];
-  
-    // Метод для добавления уведомлений
-    addNotification(notification: Notification): void {
-      this.notifications.push(notification);
-    }
-  
-    // Метод для отправки всех уведомлений
-    sendNotifications(message: string): void {
-      this.notifications.forEach(notification => {
-        notification.send(message);
-      });
-    }
-  }
-  
-  // Использование
-  const emailService = new EmailNotification();
-  const smsService = new SMSNotification();
-  const pushService = new PushNotification();
-  
-  const notificationService = new NotificationService();
-  
-  // Добавляем различные типы уведомлений
-  notificationService.addNotification(emailService);
-  notificationService.addNotification(smsService);
-  notificationService.addNotification(pushService);
-  
-  // Отправляем уведомления
-  notificationService.sendNotifications('Hello, User!');
-  
+}
+
+const player = new Player()
+player.fight()
