@@ -410,6 +410,12 @@ interface Weapon {
       this.weapon.attack(); // Использует любое оружие
     }
   }
+
+  class Magic implements Weapon {
+    attack(): void {
+        console.log('Кастую заклинание')
+    }
+  }
   
   // Использование
   const sword = new Sword();
@@ -420,4 +426,7 @@ interface Weapon {
   
   const playerWithBow = new Player(bow);
   playerWithBow.fight(); // "Стреляю из лука!"
-  
+
+  const magic = new Magic()
+const playerWithMagic = new Player(magic)  
+playerWithMagic.fight()
